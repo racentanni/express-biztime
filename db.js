@@ -2,8 +2,12 @@
 
 const { Client } = require("pg");
 
-const client = new Client({
-    connectionString: "postgresql://biztime"    
+const DB_URI = (process.env.NODE_ENV === "test")
+? "postgresql:///biztime_test"
+: "postgresql:///biztime";
+
+let client = new Client({
+    connectionString: DB_URI   
 });
 
 client.connect();
